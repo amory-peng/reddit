@@ -1,0 +1,12 @@
+<table>
+  <tr>
+    <th>Subs</th>
+    <th>Description</th>
+  </tr>
+  <% @subs.each do |sub| %>
+    <tr>
+      <td><%= link_to sub.title, sub_url(sub) %></td>
+      <td><%= sub.description %>
+    </tr>
+  <% end %>
+</table>

@@ -1,0 +1,14 @@
+<%= @sub.title %>
+
+<h2>Description</h2>
+<%= button_to "Make New Post", new_post_url %>
+<br>
+<div>
+  <%= @sub.description %>
+</div>
+
+<ul>
+  <% @posts.each do |post| %>
+  <li><%= link_to post.title, post_url(post) %></li>
+  <% end %>
+</ul>

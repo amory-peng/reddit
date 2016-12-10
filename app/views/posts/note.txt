@@ -1,0 +1,5 @@
+<% @post.comments.each do |comment| %>
+  <% if comment.parent_comment_id.nil? %>
+    <li><%= render "comments/comment", comment: comment %></li>
+  <% end %>
+<% end %>

@@ -1,0 +1,39 @@
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Url</th>
+    <th>Content</th>
+  </tr>
+  <tr>
+    <td>(<%= @post.votes.sum(:value) %>) <%= @post.title %></td>
+    <td><%= @post.url %></td>
+    <td><%= @post.content %></td>
+    <td><%= button_to "Upvote", upvote_post_url, method: :post %></td>
+    <td><%= button_to "Downvote", downvote_post_url, method: :post %></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <td>
+      <h3>Subs</h3>
+    </td>
+  </tr>
+  <% @post.subs.each do |sub| %>
+  <tr>
+    <td><%= link_to sub.title, sub_url(sub) %></td>
+  </tr>
+  <% end %>
+</table>
+<div>
+  <%= link_to "Edit", edit_post_url(@post) if current_user == @post.owner %>
+</div>
+
+<%= link_to "Comments", new_post_comment_url(@post) %>
+
+<h1>Comments</h1>
+<% if @all_comments[nil] %>
+  <% @all_comments[nil].each do |comment| %>
+    <li><%= render "comments/comment", comment: comment, all_comments: @all_comments %></li>
+  <% end %>
+<% end %>
